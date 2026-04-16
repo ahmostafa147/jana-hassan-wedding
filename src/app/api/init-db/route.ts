@@ -15,6 +15,7 @@ export async function POST() {
     return NextResponse.json({ success: true, message: "Database initialized" });
   } catch (error) {
     console.error("Init DB error:", error);
-    return NextResponse.json({ error: "Failed to initialize database" }, { status: 500 });
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json({ error: "Failed to initialize database", details: message }, { status: 500 });
   }
 }
