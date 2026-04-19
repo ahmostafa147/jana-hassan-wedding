@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
 function LeafCorner({ className }: { className: string }) {
   return (
@@ -79,55 +78,44 @@ export default function Home() {
       {/* Main content */}
       <div className="relative z-10 text-center px-8 max-w-xl mx-auto flex flex-col items-center">
 
-        {/* Bismillah - small, at the top */}
-        <p
-          className="animate-fade-up delay-1 text-text-primary text-base sm:text-lg md:text-xl tracking-wide"
-          style={{ fontFamily: "var(--font-arabic)" }}
-          dir="rtl"
-          lang="ar"
-        >
-          بسم الله الرحمن الرحيم
-        </p>
-
-        {/* Quranic verse - LARGE and prominent like the flyer */}
-        <p
-          className="animate-fade-up delay-2 text-text-primary text-lg sm:text-xl md:text-2xl leading-loose mt-3 sm:mt-4 font-bold max-w-md"
-          style={{ fontFamily: "var(--font-arabic)" }}
-          dir="rtl"
-          lang="ar"
-        >
-          وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً
-        </p>
+        {/* Quranic calligraphy (includes the Bismillah) — rendered as a single image so the thuluth font is preserved.
+            object-fit: cover crops the square SVG's top/bottom whitespace so the layout isn't padded by empty canvas. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/wa-mn-aayatehe-T-012.svg"
+          alt="بسم الله الرحمن الرحيم — ومن آياته أن خلق لكم من أنفسكم أزواجاً لتسكنوا إليها وجعل بينكم مودة ورحمة"
+          className="animate-fade-up delay-1 w-[300px] h-[175px] sm:w-[360px] sm:h-[210px] md:w-[400px] md:h-[230px]"
+          style={{
+            mixBlendMode: "multiply",
+            opacity: 0.92,
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
 
         {/* "We joyfully invite you..." */}
         <p
-          className="animate-fade-up delay-3 text-text-secondary text-sm sm:text-base md:text-lg italic mt-4 sm:mt-5"
+          className="animate-fade-up delay-3 text-text-secondary text-sm sm:text-base md:text-lg italic mt-2 sm:mt-3"
           style={{ fontFamily: "var(--font-serif)" }}
         >
           We joyfully invite you to the katb kitab of:
         </p>
 
-        {/* JH Monogram - LARGE centerpiece */}
-        <div className="animate-fade-up delay-4 my-4 sm:my-5 md:my-6">
-          <Image
-            src="/monogram.jpg"
-            alt="J & H monogram"
-            width={220}
-            height={275}
-            className="w-[140px] h-[175px] sm:w-[180px] sm:h-[225px] md:w-[220px] md:h-[275px] object-cover"
-            style={{ mixBlendMode: "multiply" }}
-            priority
-          />
-        </div>
+        {/* HJ monogram — ink-like, centered, restrained size */}
+        <div
+          aria-label="H & J monogram"
+          role="img"
+          className="jh-mark animate-fade-up delay-4 my-3 sm:my-4 md:my-5 w-[150px] h-[180px] sm:w-[170px] sm:h-[205px] md:w-[185px] md:h-[220px]"
+        />
 
         {/* Couple names - large and elegant */}
         <h1
           className="animate-fade-up delay-5 text-2xl sm:text-3xl md:text-4xl italic text-text-primary tracking-wide"
           style={{ fontFamily: "var(--font-serif)" }}
         >
-          Jana Malek{" "}
+          Hassan Diaa{" "}
           <span className="text-clay-dark not-italic font-normal">&amp;</span>{" "}
-          Hassan Diaa
+          Jana Malek
         </h1>
 
         {/* Date & Time - bold, prominent */}
@@ -135,7 +123,7 @@ export default function Home() {
           className="animate-fade-up delay-6 text-lg sm:text-xl md:text-2xl font-bold tracking-wider text-text-primary mt-3 sm:mt-4"
           style={{ fontFamily: "var(--font-serif)" }}
         >
-          June 6th <span className="mx-1">|</span> 11:00 AM &ndash; 12:00 PM
+          June 6th <span className="mx-1">|</span> 11 AM &ndash; 12 PM
         </p>
 
         {/* Venue */}
@@ -178,7 +166,7 @@ export default function Home() {
         >
           <div className="absolute inset-0 bg-text-primary/40 backdrop-blur-sm" />
           <div
-            className="relative bg-card-bg shadow-2xl p-8 sm:p-10 w-[90vw] max-w-md animate-scale-in border border-border-color"
+            className="paper-panel relative bg-card-bg shadow-2xl p-8 sm:p-10 w-[90vw] max-w-md animate-scale-in border border-border-color"
             onClick={(e) => e.stopPropagation()}
           >
             {submitted ? (

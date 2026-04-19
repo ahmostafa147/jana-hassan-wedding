@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Jana & Hassan | Katb Kitab",
-  description: "We joyfully invite you to the katb kitab of Jana Malek & Hassan Diaa",
+  title: "Hassan & Jana | Katb Kitab",
+  description: "We joyfully invite you to the katb kitab of Hassan Diaa & Jana Malek",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
