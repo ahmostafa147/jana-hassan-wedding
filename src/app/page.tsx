@@ -101,11 +101,19 @@ export default function Home() {
           We joyfully invite you to the katb kitab of:
         </p>
 
-        {/* HJ monogram — ink-like, centered, restrained size */}
-        <div
-          aria-label="H & J monogram"
-          role="img"
-          className="jh-mark animate-fade-up delay-4 my-3 sm:my-4 md:my-5 w-[150px] h-[180px] sm:w-[170px] sm:h-[205px] md:w-[185px] md:h-[220px]"
+        {/* HJ monogram — PNG with baked-in alpha so it renders reliably at any zoom level.
+            Explicit width/height + high fetch priority + decoded-sync keeps the fade-in animation
+            from running before the pixels arrive, which was causing a visible late-paint "pop". */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/jh-mark.png"
+          alt="H & J monogram"
+          width={860}
+          height={1036}
+          decoding="sync"
+          fetchPriority="high"
+          className="animate-fade-up delay-4 my-3 sm:my-4 md:my-5 w-[150px] h-auto sm:w-[170px] md:w-[185px]"
+          style={{ filter: "opacity(0.85)" }}
         />
 
         {/* Couple names - large and elegant */}
