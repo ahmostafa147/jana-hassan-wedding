@@ -12,6 +12,17 @@ export const metadata: Metadata = {
     apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest",
+  openGraph: {
+    title: "Hassan & Jana | Katb Kitab",
+    description: "We joyfully invite you to the katb kitab of Hassan Diaa & Jana Malek — June 6th, Islamic Center of Irvine.",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hassan & Jana | Katb Kitab",
+    description: "We joyfully invite you to the katb kitab of Hassan Diaa & Jana Malek — June 6th, Islamic Center of Irvine.",
+  },
 };
 
 export default function RootLayout({
