@@ -118,8 +118,8 @@ export default function Home() {
 
         {/* Couple names - large and elegant */}
         <h1
-          className="animate-fade-up delay-5 text-2xl sm:text-3xl md:text-4xl italic text-text-primary tracking-wide"
-          style={{ fontFamily: "var(--font-serif)" }}
+          className="animate-fade-up delay-5 text-3xl sm:text-4xl md:text-5xl italic text-text-primary tracking-wide"
+          style={{ fontFamily: "var(--font-names)" }}
         >
           Hassan Diaa{" "}
           <span className="text-clay-dark not-italic font-normal">&amp;</span>{" "}

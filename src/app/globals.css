@@ -13,6 +13,7 @@
   --color-text-primary: #3A2E26;
   --color-text-secondary: #6B5A4E;
   --font-serif: "Playfair Display", Georgia, serif;
+  --font-names: "Cormorant Garamond", "Playfair Display", Georgia, serif;
   --font-arabic: "Amiri", "Traditional Arabic", serif;
   --font-sans: "Inter", system-ui, sans-serif;
 }
