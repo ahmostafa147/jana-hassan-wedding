@@ -16,6 +16,11 @@ export default function AdminPage() {
   const [totalGuests, setTotalGuests] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [search, setSearch] = useState("");
+
+  const filteredRsvps = rsvps.filter((r) =>
+    r.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   const fetchRsvps = async (pw: string) => {
     setLoading(true);
@@ -112,6 +117,19 @@ export default function AdminPage() {
           </div>
         </div>
 
+        {/* Search */}
+        {rsvps.length > 0 && (
+          <div className="mb-4">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search by name..."
+              className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm bg-white focus:outline-none focus:border-gray-400"
+            />
+          </div>
+        )}
+
         {/* RSVP List */}
         {rsvps.length === 0 ? (
           <div className="bg-white rounded-lg p-10 shadow-sm text-center">
@@ -119,40 +137,50 @@ export default function AdminPage() {
           </div>
         ) : (
           <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-100">
-                  <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Name</th>
-                  <th className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Guests</th>
-                  <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Date</th>
-                  <th className="px-3 py-3"></th>
-                </tr>
-              </thead>
-              <tbody>
-                {rsvps.map((rsvp) => (
-                  <tr key={rsvp.id} className="border-b border-gray-50 last:border-0">
-                    <td className="px-5 py-4 text-sm text-gray-800">{rsvp.name}</td>
-                    <td className="px-5 py-4 text-sm text-gray-600 text-center">{rsvp.quantity}</td>
-                    <td className="px-5 py-4 text-xs text-gray-400 text-right">
-                      {new Date(rsvp.created_at).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        hour: "numeric",
-                        minute: "2-digit",
-                      })}
-                    </td>
-                    <td className="px-3 py-4">
-                      <button
-                        onClick={() => handleDelete(rsvp.id)}
-                        className="text-xs text-red-400 hover:text-red-600 cursor-pointer"
-                      >
-                        Remove
-                      </button>
-                    </td>
+            <div className="max-h-[60vh] overflow-y-auto">
+              <table className="w-full">
+                <thead className="sticky top-0 bg-white z-10">
+                  <tr className="border-b border-gray-100">
+                    <th className="text-left text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Name</th>
+                    <th className="text-center text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Guests</th>
+                    <th className="text-right text-xs font-medium text-gray-500 uppercase tracking-wider px-5 py-3">Date</th>
+                    <th className="px-3 py-3"></th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {filteredRsvps.length === 0 ? (
+                    <tr>
+                      <td colSpan={4} className="px-5 py-10 text-center text-sm text-gray-400">
+                        No matches for &ldquo;{search}&rdquo;
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredRsvps.map((rsvp) => (
+                      <tr key={rsvp.id} className="border-b border-gray-50 last:border-0">
+                        <td className="px-5 py-4 text-sm text-gray-800">{rsvp.name}</td>
+                        <td className="px-5 py-4 text-sm text-gray-600 text-center">{rsvp.quantity}</td>
+                        <td className="px-5 py-4 text-xs text-gray-400 text-right">
+                          {new Date(rsvp.created_at).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            hour: "numeric",
+                            minute: "2-digit",
+                          })}
+                        </td>
+                        <td className="px-3 py-4">
+                          <button
+                            onClick={() => handleDelete(rsvp.id)}
+                            className="text-xs text-red-400 hover:text-red-600 cursor-pointer"
+                          >
+                            Remove
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>
